@@ -21,8 +21,18 @@ def pregunta_01():
     214
 
     """
-    return
-
+    datos_prueba = open('data.csv', 'r')
+    lineas = datos_prueba.readlines()
+    v1, v2, v3, v4, v5 = [[],[],[],[],[]]
+    for linea in lineas:
+        data = linea.split("\t")
+        v1.append(data[0])
+        v2.append(int(data[1]))
+        v3.append(data[2])
+        v4.append(data[3])
+        v5.append(data[4])
+        
+    return sum(v2)
 
 def pregunta_02():
     """
@@ -39,7 +49,30 @@ def pregunta_02():
     ]
 
     """
-    return
+    datos_prueba = open('data.csv', 'r')
+    lineas = datos_prueba.readlines()
+    v1, v2, v3, v4, v5 = [[],[],[],[],[]]
+    for linea in lineas:
+        data = linea.split("\t")
+        v1.append(data[0])
+        v2.append(int(data[1]))
+        v3.append(data[2])
+        v4.append(data[3])
+        v5.append(data[4])  
+
+    lista = []
+    v1_unique = []
+    for i in v1:
+        if i not in v1_unique:
+            v1_unique.append(i)
+
+    v1_unique.sort()
+    for i in v1_unique:
+        lista.append((i, v1.count(i)))
+
+    lista
+
+    return lista
 
 
 def pregunta_03():
@@ -57,7 +90,37 @@ def pregunta_03():
     ]
 
     """
-    return
+    datos_prueba = open('data.csv', 'r')
+    lineas = datos_prueba.readlines()
+    v1, v2, v3, v4, v5 = [[],[],[],[],[]]
+    for linea in lineas:
+        data = linea.split("\t")
+        v1.append(data[0])
+        v2.append(int(data[1]))
+        v3.append(data[2])
+        v4.append(data[3])
+        v5.append(data[4])
+
+    v1_unique = []
+    for i in v1:
+        if i not in v1_unique:
+            v1_unique.append(i)
+    
+    data = [v1, v2, v3, v4, v5]
+    lista = []
+    v1_unique.sort()
+
+    for letra in v1_unique:
+        cuenta = 0
+        tupla = ()
+        for i in range(len(data[0])):
+            if data[0][i] == letra:
+                cuenta += data[1][i]
+        tupla = (letra, cuenta)
+        if tupla != ():
+            lista.append(tupla)
+
+    return lista
 
 
 def pregunta_04():
@@ -82,7 +145,30 @@ def pregunta_04():
     ]
 
     """
-    return
+    datos_prueba = open('data.csv', 'r')
+    lineas = datos_prueba.readlines()
+    v1, v2, v3, v4, v5 = [[],[],[],[],[]]
+    for linea in lineas:
+        data = linea.split("\t")
+        v1.append(data[0])
+        v2.append(int(data[1]))
+        v3.append(data[2])
+        v4.append(data[3])
+        v5.append(data[4]) 
+
+    fechas = list(map(lambda x: x.split("-"), v3))
+    meses = []
+    for mes in range(len(fechas)):
+        meses.append(fechas[mes][1])
+
+    meses_unique = list(set(meses))
+
+    lista = []
+    meses_unique.sort()
+    for i in meses_unique:
+        lista.append((i, meses.count(i)))
+    
+    return lista
 
 
 def pregunta_05():
@@ -100,7 +186,39 @@ def pregunta_05():
     ]
 
     """
-    return
+    datos_prueba = open('data.csv', 'r')
+    lineas = datos_prueba.readlines()
+    v1, v2, v3, v4, v5 = [[],[],[],[],[]]
+    for linea in lineas:
+        data = linea.split("\t")
+        v1.append(data[0])
+        v2.append(int(data[1]))
+        v3.append(data[2])
+        v4.append(data[3])
+        v5.append(data[4]) 
+    
+    data = [v1, v2, v3, v4, v5]
+    lista = []
+
+    v1_unique = []
+    for i in v1:
+        if i not in v1_unique:
+            v1_unique.append(i)
+
+    v1_unique.sort()
+
+    for letra in v1_unique:
+        x = letra
+        x = []
+        for i in range(len(data[0])):
+            if data[0][i] == letra:
+                x.append(data[1][i])
+        tupla = (letra, max(x), min(x))
+        if tupla != ():
+            lista.append(tupla)
+
+    return lista
+
 
 
 def pregunta_06():
@@ -125,7 +243,47 @@ def pregunta_06():
     ]
 
     """
-    return
+    datos_prueba = open('data.csv', 'r')
+    lineas = datos_prueba.readlines()
+    v1, v2, v3, v4, v5 = [[],[],[],[],[]]
+    for linea in lineas:
+        data = linea.split("\t")
+        v1.append(data[0])
+        v2.append(int(data[1]))
+        v3.append(data[2])
+        v4.append(data[3])
+        v5.append(data[4]) 
+
+    lista_1 = []
+    for i in range(0,len(v5)):
+        lista_1.append(v5[i].strip("\n").split(","))
+
+
+    lista_2 = []
+    for sublista in lista_1:
+        for j in sublista:
+            lista_2.append(j)
+
+    lista_l = []
+    lista_n = []
+    for i in lista_2:
+        lista_l.append(i.split(":")[0])
+        lista_n.append(int(i.split(":")[1]))
+
+    claves_unique = list(set(lista_l))
+    claves_unique.sort()
+
+    lista = []
+    for clave in claves_unique:
+        x = []
+        for i in range(len(lista_l)):
+            if lista_l[i] == clave:
+                x.append(lista_n[i])
+        tupla = (clave, min(x), max(x))
+        if tupla != ():
+            lista.append(tupla)
+
+    return lista
 
 
 def pregunta_07():
@@ -149,7 +307,35 @@ def pregunta_07():
     ]
 
     """
-    return
+    datos_prueba = open('data.csv', 'r')
+    lineas = datos_prueba.readlines()
+    v1, v2, v3, v4, v5 = [[],[],[],[],[]]
+    for linea in lineas:
+        data = linea.split("\t")
+        v1.append(data[0])
+        v2.append(int(data[1]))
+        v3.append(data[2])
+        v4.append(data[3])
+        v5.append(data[4]) 
+
+    v1_unique = []
+    for i in v1:
+        if i not in v1_unique:
+            v1_unique.append(i)
+
+    v2_unique = list(set(v2))
+    v2_unique.sort()
+    v2_unique
+
+    resultado = []
+    for index in v2_unique:
+        lista = []
+        for i in range(len(v2)):
+            if v2[i] == index:
+                lista.append(v1[i])
+        resultado.append((index, lista))
+
+    return resultado
 
 
 def pregunta_08():
@@ -174,7 +360,37 @@ def pregunta_08():
     ]
 
     """
-    return
+    datos_prueba = open('data.csv', 'r')
+    lineas = datos_prueba.readlines()
+    v1, v2, v3, v4, v5 = [[],[],[],[],[]]
+    for linea in lineas:
+        data = linea.split("\t")
+        v1.append(data[0])
+        v2.append(int(data[1]))
+        v3.append(data[2])
+        v4.append(data[3])
+        v5.append(data[4]) 
+
+    v1_unique = []
+    for i in v1:
+        if i not in v1_unique:
+            v1_unique.append(i)
+
+    v2_unique = list(set(v2))
+    v2_unique.sort()
+    v2_unique
+
+    resultado = []
+    for index in v2_unique:
+        lista = []
+        for i in range(len(v2)):
+            if v2[i] == index:
+                lista.append(v1[i])
+        lista_ord = list(set(lista))
+        lista_ord.sort()
+        resultado.append((index, lista_ord))
+    
+    return resultado
 
 
 def pregunta_09():
@@ -197,7 +413,41 @@ def pregunta_09():
     }
 
     """
-    return
+    datos_prueba = open('data.csv', 'r')
+    lineas = datos_prueba.readlines()
+    v1, v2, v3, v4, v5 = [[],[],[],[],[]]
+    for linea in lineas:
+        data = linea.split("\t")
+        v1.append(data[0])
+        v2.append(int(data[1]))
+        v3.append(data[2])
+        v4.append(data[3])
+        v5.append(data[4]) 
+
+    lista_1 = []
+    for i in range(0,len(v5)):
+        lista_1.append(v5[i].strip("\n").split(","))
+
+
+    lista_2 = []
+    for sublista in lista_1:
+        for j in sublista:
+            lista_2.append(j)
+
+    lista_l = []
+    lista_n = []
+    for i in lista_2:
+        lista_l.append(i.split(":")[0])
+        lista_n.append(int(i.split(":")[1]))
+
+    claves_unique = list(set(lista_l))
+    claves_unique.sort()
+
+    dicc = {}
+    for clave in claves_unique:
+        dicc[clave] = lista_l.count(clave)
+
+    return dicc
 
 
 def pregunta_10():
@@ -216,9 +466,23 @@ def pregunta_10():
         ("E", 3, 3),
     ]
 
-
     """
-    return
+    datos_prueba = open('data.csv', 'r')
+    lineas = datos_prueba.readlines()
+    v1, v2, v3, v4, v5 = [[],[],[],[],[]]
+    for linea in lineas:
+        data = linea.split("\t")
+        v1.append(data[0])
+        v2.append(int(data[1]))
+        v3.append(data[2])
+        v4.append(data[3])
+        v5.append(data[4]) 
+
+    l = []
+    for i in range(len(v1)):
+        t = (v1[i], len(v4[i].replace(",", "")), len(v5[i].split(",")))
+        l.append(t)
+    return l
 
 
 def pregunta_11():
@@ -239,7 +503,39 @@ def pregunta_11():
 
 
     """
-    return
+    datos_prueba = open('data.csv', 'r')
+    lineas = datos_prueba.readlines()
+    v1, v2, v3, v4, v5 = [[],[],[],[],[]]
+    for linea in lineas:
+        data = linea.split("\t")
+        v1.append(data[0])
+        v2.append(int(data[1]))
+        v3.append(data[2])
+        v4.append(data[3])
+        v5.append(data[4]) 
+    
+    nuevo_v4 = []
+    for i in range(len(v4)):
+        nuevo_v4.append(v4[i].split(","))
+
+    v4_f, v2_ext = [], []
+    for lista in range(len(nuevo_v4)):
+        for i in range(len(nuevo_v4[lista])):
+            v4_f.append(nuevo_v4[lista][i])
+            v2_ext.append(v2[lista])
+
+    v4_f_unique = list(set(v4_f))
+    v4_f_unique.sort()
+
+    lista = {}
+    for letra in v4_f_unique:
+        cuenta = 0
+        for i in range(len(v4_f)):
+            if v4_f[i] == letra:
+                cuenta += v2_ext[i]
+        lista[letra] = cuenta
+
+    return lista
 
 
 def pregunta_12():
@@ -257,4 +553,45 @@ def pregunta_12():
     }
 
     """
-    return
+    datos_prueba = open('data.csv', 'r')
+    lineas = datos_prueba.readlines()
+    v1, v2, v3, v4, v5 = [[],[],[],[],[]]
+    for linea in lineas:
+        data = linea.split("\t")
+        v1.append(data[0])
+        v2.append(int(data[1]))
+        v3.append(data[2])
+        v4.append(data[3])
+        v5.append(data[4]) 
+    
+    lista = []
+    v1_unique = []
+    for i in v1:
+        if i not in v1_unique:
+            v1_unique.append(i)
+
+    v1_unique.sort()
+
+    lista_1 = []
+    for i in range(0,len(v5)):
+        lista_1.append(v5[i].strip("\n").split(","))
+
+    lista_2, v1_ext = [], []
+    for sublista in range(len(lista_1)):
+        for j in lista_1[sublista]:
+            lista_2.append(j)
+            v1_ext.append(v1[sublista])
+
+    lista_n = []
+    for i in lista_2:
+        lista_n.append(int(i.split(":")[1]))
+
+    dicc_12 = {}
+    for letra in v1_unique:
+        cuenta = 0
+        for i in range(len(v1_ext)):
+            if v1_ext[i] == letra:
+                cuenta += lista_n[i]
+        dicc_12[letra] = cuenta
+
+    return dicc_12
